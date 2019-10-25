@@ -57,11 +57,9 @@ p {
 }
 
 .side-header__box__menu{
+  &.side-header__box__menu li {
   margin-left: 0.3rem;
-}
-
-.side-header__box__menu li {
-  margin-left: 0.3rem;
+ }
 }
 
 a {
