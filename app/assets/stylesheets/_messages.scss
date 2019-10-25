@@ -32,18 +32,16 @@ div {
   display: flex;
   align-items: center;
   padding: 0 20px;
-}
-
-.side-header__box{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-weight: bold;
-}
-
-.side-header__box__username{
-  margin: 0;
-  padding: 0;
+  .side-header__box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    .side-header__box__username{
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 p {
