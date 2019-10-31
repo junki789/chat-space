@@ -13,31 +13,32 @@
               =link_to "/users/1544/edit"do
                 %i.fa.fa-cog
       .groups
-        =link_to "/groups/3302/messages"do
-          .group
-          - current_user.groups.each do |group|
-            %p.group__group-name 
-            = group.name
-            %p.group__latest-message まだメッセージがありません
+        - current_user.groups.each do |group|
+          =link_to group_messages_path(group) do
+            .group
+              %p.group__group-name 
+                = group.name
+              %p.group__latest-message 
+                = group.show_last_message     
     .chat-main
       .main-header
         .main-header__left-box
-          %h2.main-header__left-box__current-group{"data-group_id": "3302"}
-            tanosiku
+          %h2.main-header__left-box__current-group{"data-group_id": "2"}
+            = @group.name
           %ul.main-header__left-box__member-list
-            Member：
-            %li.main-header__left-box__member-list__member taku
+            - @group.users.each do |users|
+              =users.name
+            %li.main-header__left-box__member-list__member 
         =link_to "/groups/1/edit"do
           .main-header__edit-btn Edit
       .messages
+        = render@messages
+      
       .form
-        %form#new_message.new_message{"accept-charset": "UTF-8", action: "/groups/3302/messages", enctype: "multipart/form-data", method: "post"}
-          %input{name: "utf8", type: "hidden", value: "✓"}/
-          %input{name: "authenticity_token", type: "hidden", value: "oPL48pjatRVsGnHaWeW1t32fUAMGvuWqCwEJJnpdzv2J8C/jjhMkIASL/gKgCatqPGdnL+DozAXcHwzWZOT1jA=="}/
-          .input-box
-            %input#message_content.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}/
-            %label.input-box__image{for: "message_image"}
-              %i.fa.fa-image
-              %input#message_image.input-box__image__file{name: "message[image]", type: "file"}/
-          %input.submit-btn{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
-  
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+          .form__mask
+            = f.label :image, class: 'form__mask__image' do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'form__submit'      

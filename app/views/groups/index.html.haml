@@ -10,12 +10,13 @@
               =link_to "/groups/new"do
                 %i.fa.fa-edit
             %li.side-header__box__menu__edit-user
-              =link_to "/users/1544/edit"do
+              =link_to edit_user_path(current_user)do
                 %i.fa.fa-cog
       .groups
-        =link_to "/groups/3302/messages"do
-          .group
-          - current_user.groups.each do |group|
-            %p.group__group-name 
-            = group.name
-            %p.group__latest-message まだメッセージがありません
+        - current_user.groups.each do |group|
+          =link_to group_messages_path(group) do
+            .group
+              %p.group__group-name 
+                = group.name
+              %p.group__latest-message 
+                まだメッセージがありません
