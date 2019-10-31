@@ -8,6 +8,7 @@
 
 .form form {
   display: flex;
+  width: 100%;
 }
 
 .form__message {
@@ -18,23 +19,26 @@
   border-style: none;
 }
 
+.form__mask{
+  position: relative;
+}
+
 .form__mask__image {
+  height: 50px;
+  width: 100%;
+  color: #434a54;
+  border-style: none;
+}
+
+.icon {
   font-size: 1.3rem;
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px;
   cursor: pointer;
 }
 
-.picture-o{
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
-
-.picture-o{
+.hidden{
   display: none;
 }
 
