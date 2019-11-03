@@ -1,10 +1,7 @@
 $(function(){
   function buildHTML(message){
-    if (message.image != null){
-      var img = `<img class="lower-message__image" src=${message.image}>`
-    }else{
-      var img = ""
-    }
+    message.image != null ? img = `<img class="lower-message__image" src=${message.image}>` : img = ""
+    
     var html = `<div class="message">
                   <div class="upper-message">
                   <div class="upper-message__user-name">${message.name}</div>
@@ -20,7 +17,6 @@ $(function(){
   }
   $('#new_message').on('submit', function(e){
     e.preventDefault();
-    console.log(this)
     var formData = new FormData(this);
     var url = $(this).attr('action')
     $.ajax({
