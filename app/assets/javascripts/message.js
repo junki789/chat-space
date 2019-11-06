@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
     message.image != null ? img = `<img class="lower-message__image" src=${message.image}>` : img = ""
     
-    var html = `<div class="message">
+    var html = `<div class="message" data-id="${message.id}">
                   <div class="upper-message">
                   <div class="upper-message__user-name">${message.name}</div>
                   <div class="upper-message__date">${message.created_at}</div>
@@ -36,6 +36,34 @@ $(function(){
     })
     .fail(function() {
       alert("メッセージ送信に失敗しました");
-  });
+    })
+    return false;
   })
-})
+
+    
+  var reloadMessages = function () {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      var last_message_id = $('.message:last').data("id"); 
+      //var group_id = $(".group").data("group-id");
+
+      $.ajax({ 
+        url: "api/messages", 
+        type: 'get', 
+        dataType: 'json', 
+        data: {id: last_message_id} 
+      })
+      .done(function (messages) { 
+        var insertHTML = '';
+        messages.forEach(function (message) {
+          insertHTML = buildHTML(message); 
+          $('.messages').append(insertHTML);
+        })
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      })
+      .fail(function () {
+        alert('自動更新に失敗しました');
+      });
+    }
+  };
+  setInterval(reloadMessages, 5000);
+  });
