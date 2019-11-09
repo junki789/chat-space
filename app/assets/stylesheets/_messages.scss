@@ -67,6 +67,10 @@ a {
   text-decoration: none;
 }
 
+.group__latest-message {
+  font-size: 11px;
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -76,6 +80,7 @@ a {
 }
 
 .groups{
+  text-align: left;
   height: calc(100vh - 100px);
   background-color: #2f3e51;
   padding: 20px 20px 0;

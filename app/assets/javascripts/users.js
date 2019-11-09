@@ -19,9 +19,9 @@ $(function() {
   }
   function addDeleteUser(name, id) {
     let html = `
-    <div class="ChatMember clearfix" id="${id}">  
-      <p class="ChatMember__name">${name}</p>
-      <div class="user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn="${id}" data-user-name="${name}">削除</div>
+    <div class="chat-group-user" id="${id}">  
+    <p class="chat-group-user__name">${name}</p>
+    <a class="user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn="${id}" data-user-name="${name}">削除</a>
     </div>`;
     $(".js-add-user").append(html);
   }
